@@ -45,17 +45,17 @@ has_many :purchase_records
 
 ## items テーブル
 
-| Column             | Type       | Options                        |
-| ------------------ | ---------- | ------------------------------ |
-| item_name          | string     | null: false                    |
-| detail             | text       | null: false                    |
-| item_category      | string     | null: false                    |
-| item_sale_status   | string     | null: false                    |
-| fee_status         | string     | null: false                    |
-| prefecture_id      | string     | null: false                    |
-| scheduled_delivery | string     | null: false                    |
-| price              | integer    | null: false                    |
-| user               | references | null: false, foreign_key: true |
+| Column                | Type       | Options                        |
+| --------------------- | ---------- | ------------------------------ |
+| item_name             | string     | null: false                    |
+| detail                | text       | null: false                    |
+| item_category_id      | integer    | null: false                    |
+| item_sale_status_id   | integer    | null: false                    |
+| fee_status_id         | integer    | null: false                    |
+| prefecture_id         | integer    | null: false                    |
+| scheduled_delivery_id | integer    | null: false                    |
+| price                 | integer    | null: false                    |
+| user                  | references | null: false, foreign_key: true |
 
 ### Association
 
