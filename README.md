@@ -64,12 +64,10 @@ has_one :purchase_record
 
 ## purchase_records テーブル
 
-| Column         | Type       | Options                        |
-| -------------- | ---------- | ------------------------------ |
-| buyer_name     | string     | null: false                    |
-| purchased_item | string     | null: false                    |
-| user           | references | null: false, foreign_key: true |
-| item           | references | null: false, foreign_key: true |
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+| user   | references | null: false, foreign_key: true |
+| item   | references | null: false, foreign_key: true |
 
 ### Association
 
