@@ -44,13 +44,12 @@ has_many :purchase_records
 
 ## items テーブル
 
-| Column      | Type       | Options                        |
-| ----------- | ---------- | ------------------------------ |
-| item_name   | string     | null: false                    |
-| detail      | text       | null: false                    |
-| price       | string     | null: false                    |
-| seller_name | string     | null: false                    |
-| user        | references | null: false, foreign_key: true |
+| Column    | Type       | Options                        |
+| --------- | ---------- | ------------------------------ |
+| item_name | string     | null: false                    |
+| detail    | text       | null: false                    |
+| price     | string     | null: false                    |
+| user      | references | null: false, foreign_key: true |
 
 ### Association
 
