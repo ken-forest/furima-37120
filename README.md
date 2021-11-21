@@ -80,7 +80,7 @@ has_one :shipping_address
 | city            | string     | null: false                    |
 | address         | string     | null: false                    |
 | building        | string     |                                |
-| phone_number    | integer    | null: false                    |
+| phone_number    | string     | null: false                    |
 | purchase_record | references | null: false, foreign_key: true |
 
 ### Association
