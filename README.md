@@ -80,7 +80,7 @@ has_one :shipping_address
 | Column          | Type       | Options                        |
 | --------------- | ---------- | ------------------------------ |
 | postal_code     | string     | null: false                    |
-| prefecture      | string     | null: false                    |
+| item_prefecture | string     | null: false                    |
 | city            | string     | null: false                    |
 | address         | string     | null: false                    |
 | building        | string     |                                |
