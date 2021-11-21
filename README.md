@@ -54,7 +54,7 @@ has_many :purchase_records
 | fee_status         | string     | null: false                    |
 | item_prefecture    | string     | null: false                    |
 | scheduled_delivery | string     | null: false                    |
-| price              | string     | null: false                    |
+| price              | integer    | null: false                    |
 | user               | references | null: false, foreign_key: true |
 
 ### Association
