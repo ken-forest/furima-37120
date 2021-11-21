@@ -52,7 +52,7 @@ has_many :purchase_records
 | item_category      | string     | null: false                    |
 | item_sale_status   | string     | null: false                    |
 | fee_status         | string     | null: false                    |
-| item_prefecture    | string     | null: false                    |
+| prefecture         | string     | null: false                    |
 | scheduled_delivery | string     | null: false                    |
 | price              | integer    | null: false                    |
 | user               | references | null: false, foreign_key: true |
@@ -80,7 +80,7 @@ has_one :shipping_address
 | Column          | Type       | Options                        |
 | --------------- | ---------- | ------------------------------ |
 | postal_code     | string     | null: false                    |
-| item_prefecture | string     | null: false                    |
+| prefecture      | string     | null: false                    |
 | city            | string     | null: false                    |
 | address         | string     | null: false                    |
 | building        | string     |                                |
