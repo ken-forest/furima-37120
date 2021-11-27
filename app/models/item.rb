@@ -21,5 +21,5 @@ class Item < ApplicationRecord
   validates :fee_status_id, numericality: { other_than: 1 }, presence: true
   validates :prefecture_id, numericality: { other_than: 1 }, presence: true
   validates :scheduled_delivery_id, numericality: { other_than: 1 }, presence: true
-  
+  validates :price, numericality: true, inclusion: { in: 300..9_999_999 }, format: { with: /\A[0-9]+\z/ },
 end
