@@ -53,9 +53,9 @@ class ItemsController < ApplicationController
   def move_to_top_page
     @item = Item.find(params[:id])
 
-    unless user_signed_in? 
-      redirect_to root_path 
-    end
+    # unless user_signed_in? 
+    #   redirect_to root_path 
+    # end
     unless current_user == @item.user
       redirect_to root_path
     end
