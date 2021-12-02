@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :move_to_top_page, only: [:edit, :update]
+  before_action :move_to_top_page, only: [:edit, :update, :destroy]
   before_action :define_item, only: [:show, :edit, :update, :destroy]
 
 
