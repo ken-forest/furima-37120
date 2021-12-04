@@ -30,6 +30,30 @@ RSpec.describe OrderShippingAddress, type: :model do
         expect(@order_shipping_address.errors.full_messages).to include("Postal code can't be blank", "Postal code is invalid. Include hyphen(-)")
       end
 
+      it '郵便番号に記号のハイフンが無いと購入できない' do
+        @order_shipping_address.postal_code = '1234567'
+        @order_shipping_address.valid?
+        expect(@order_shipping_address.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+      end
+      
+      it '郵便番号が全角文字が入っいると購入できない' do
+        @order_shipping_address.postal_code = 'あ'
+        @order_shipping_address.valid?
+        expect(@order_shipping_address.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+      end
+
+      it '郵便番号が全角数字だと購入できない' do
+        @order_shipping_address.postal_code = '１２３-４５６７'
+        @order_shipping_address.valid?
+        expect(@order_shipping_address.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+      end
+
+      it '都道府県が選ばれていないと購入できない' do
+        @order_shipping_address.prefecture_id = 1
+        @order_shipping_address.valid?
+        expect(@order_shipping_address.errors.full_messages).to include("Prefecture can't be blank")
+      end
+
     end
 
 
