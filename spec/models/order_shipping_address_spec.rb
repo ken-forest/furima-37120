@@ -17,7 +17,7 @@ RSpec.describe OrderShippingAddress, type: :model do
 
     context '商品の購入ができる場合' do
 
-      it 'postal_code、prefecture_id、city、address、phone_numberが正しく入力されていれば購入できる' do
+      it 'postal_code、prefecture_id、city、address、phone_numberが正しく入力されている。かつ、トークンが存在すれば購入できる' do
         expect(@order_shipping_address).to be_valid
       end
 
@@ -96,6 +96,12 @@ RSpec.describe OrderShippingAddress, type: :model do
         @order_shipping_address.phone_number = '0743663333東京'
         @order_shipping_address.valid?
         expect(@order_shipping_address.errors.full_messages).to include("Phone number is invalid")
+      end
+
+      it "トークンが空では購入できない" do
+        @order_shipping_address.token = nil
+        @order_shipping_address.valid?
+        expect(@order_shipping_address.errors.full_messages).to include("Token can't be blank")
       end
 
 
