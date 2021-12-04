@@ -80,12 +80,6 @@ RSpec.describe OrderShippingAddress, type: :model do
         expect(@order_shipping_address.errors.full_messages).to include("Phone number is invalid")
       end
 
-      it '電話番号が全角数字では購入できない' do
-        @order_shipping_address.phone_number = '０７４３６６３３３３'
-        @order_shipping_address.valid?
-        expect(@order_shipping_address.errors.full_messages).to include("Phone number is invalid")
-      end
-
       it '電話番号に記号のハイフンがあれば購入できない' do
         @order_shipping_address.phone_number = '0743-66-3333'
         @order_shipping_address.valid?
