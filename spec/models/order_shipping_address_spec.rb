@@ -6,6 +6,8 @@ RSpec.describe OrderShippingAddress, type: :model do
     user = FactoryBot.create(:user)
     item = FactoryBot.create(:item)
     @order_shipping_address = FactoryBot.build(:order_shipping_address, user_id: user.id, item_id: item.id)
+
+    sleep 0.1 # 0.1秒待機か(RspecのMySQLエラーを防ぐため)
   end
   
 
@@ -15,7 +17,7 @@ RSpec.describe OrderShippingAddress, type: :model do
 
     context '商品の購入ができる場合' do
 
-      it 'postal_code、prefecture_id、city、address、phone_numberが正しく入力されていれば購入できる' do
+      it 'postal_code、prefecture_id、city、address、phone_numberが存在すれば購入できる' do
         expect(@order_shipping_address).to be_valid
       end
 
@@ -53,6 +55,8 @@ RSpec.describe OrderShippingAddress, type: :model do
         @order_shipping_address.valid?
         expect(@order_shipping_address.errors.full_messages).to include("Prefecture can't be blank")
       end
+
+      
 
     end
 
