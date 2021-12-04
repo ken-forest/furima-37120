@@ -7,7 +7,7 @@ RSpec.describe OrderShippingAddress, type: :model do
     item = FactoryBot.create(:item)
     @order_shipping_address = FactoryBot.build(:order_shipping_address, user_id: user.id, item_id: item.id)
 
-    sleep 0.1 # 0.1秒待機か(RspecのMySQLエラーを防ぐため)
+    sleep 0.1 # 0.1秒待機(RspecのMySQLエラーを防ぐため)
   end
   
 
@@ -17,7 +17,7 @@ RSpec.describe OrderShippingAddress, type: :model do
 
     context '商品の購入ができる場合' do
 
-      it 'postal_code、prefecture_id、city、address、phone_numberが存在すれば購入できる' do
+      it 'postal_code、prefecture_id、city、address、phone_numberが正しく入力されていれば購入できる' do
         expect(@order_shipping_address).to be_valid
       end
 
@@ -56,7 +56,48 @@ RSpec.describe OrderShippingAddress, type: :model do
         expect(@order_shipping_address.errors.full_messages).to include("Prefecture can't be blank")
       end
 
-      
+      it '市区町村が空では購入できない' do
+        @order_shipping_address.city = ''
+        @order_shipping_address.valid?
+        expect(@order_shipping_address.errors.full_messages).to include("City can't be blank")
+      end
+
+      it '番地情報が空では購入できない' do
+        @order_shipping_address.address = ''
+        @order_shipping_address.valid?
+        expect(@order_shipping_address.errors.full_messages).to include("Address can't be blank")
+      end
+
+      it '電話番号が空では購入できない' do
+        @order_shipping_address.phone_number = ''
+        @order_shipping_address.valid?
+        expect(@order_shipping_address.errors.full_messages).to include("Phone number can't be blank", "Phone number is invalid")
+      end
+
+      it '電話番号が全角数字では購入できない' do
+        @order_shipping_address.phone_number = '０７４３６６３３３３'
+        @order_shipping_address.valid?
+        expect(@order_shipping_address.errors.full_messages).to include("Phone number is invalid")
+      end
+
+      it '電話番号が全角数字では購入できない' do
+        @order_shipping_address.phone_number = '０７４３６６３３３３'
+        @order_shipping_address.valid?
+        expect(@order_shipping_address.errors.full_messages).to include("Phone number is invalid")
+      end
+
+      it '電話番号に記号のハイフンがあれば購入できない' do
+        @order_shipping_address.phone_number = '0743-66-3333'
+        @order_shipping_address.valid?
+        expect(@order_shipping_address.errors.full_messages).to include("Phone number is invalid")
+      end
+
+      it '電話番号に文字があれば購入できない' do
+        @order_shipping_address.phone_number = '0743663333東京'
+        @order_shipping_address.valid?
+        expect(@order_shipping_address.errors.full_messages).to include("Phone number is invalid")
+      end
+
 
     end
 
