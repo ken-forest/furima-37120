@@ -116,7 +116,7 @@ RSpec.describe OrderShippingAddress, type: :model do
       end
 
       it '電話番号が9ケタ以下だったら購入できない' do
-        @order_shipping_address.phone_number = '07436633'
+        @order_shipping_address.phone_number = '074366333'
         @order_shipping_address.valid?
         expect(@order_shipping_address.errors.full_messages).to include("Phone number is invalid")
       end
