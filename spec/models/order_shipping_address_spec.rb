@@ -103,6 +103,20 @@ RSpec.describe OrderShippingAddress, type: :model do
         expect(@order_shipping_address.errors.full_messages).to include("Token can't be blank")
       end
 
+      it "ユーザー情報が紐づいていないと購入できない" do
+        @order_shipping_address.user_id = nil
+        @order_shipping_address.valid?
+        expect(@order_shipping_address.errors.full_messages).to include("User can't be blank")
+      end
+
+      it "購入したい商品の情報が紐づいていないと購入できない" do
+        @order_shipping_address.item_id = nil
+        @order_shipping_address.valid?
+        expect(@order_shipping_address.errors.full_messages).to include("Item can't be blank")
+      end
+
+      
+
 
     end
 
