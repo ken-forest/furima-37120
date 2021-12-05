@@ -17,7 +17,12 @@ RSpec.describe OrderShippingAddress, type: :model do
 
     context '商品の購入ができる場合' do
 
-      it 'postal_code、prefecture_id、city、address、phone_numberが正しく入力されている。かつ、トークンが存在すれば購入できる' do
+      it 'postal_code、prefecture_id、city、address、phone_numberが正しく入力されている。加えて建物情報がある。かつ、トークンが存在すれば購入できる' do
+        expect(@order_shipping_address).to be_valid
+      end
+
+      it 'postal_code、prefecture_id、city、address、phone_numberが正しく入力されている。建物情報は入力されていないが、トークンが存在すれば購入できる' do
+        @order_shipping_address.building = ''
         expect(@order_shipping_address).to be_valid
       end
 
