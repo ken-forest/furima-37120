@@ -1,16 +1,16 @@
 class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
-  before_action :redirect_to_root, only: [:index]
+  before_action :redirect_to_root, only: [:index, :create]
 
   def index
     @order_shipping_address = OrderShippingAddress.new
-    @item = Item.find(params[:item_id])
+    
 
   end
 
   def create
     @order_shipping_address = OrderShippingAddress.new(order_params)
-    @item = Item.find(params[:item_id])
+    
 
     if @order_shipping_address.valid?
 
